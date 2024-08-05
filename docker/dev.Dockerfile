@@ -5,11 +5,13 @@ WORKDIR /app
 # Install Poetry
 RUN apt-get update && apt-get install gcc g++ curl build-essential postgresql-server-dev-all -y
 RUN curl -sSL https://install.python-poetry.org | python3 -
-# # Add Poetry to PATH
+# Add Poetry to PATH
 ENV PATH="${PATH}:/root/.local/bin"
-# # Copy the pyproject.toml and poetry.lock files
-COPY poetry.lock pyproject.toml ./
-# Copy the rest of the application codes
+
+# Copy the pyproject.toml and poetry.lock files from their actual location
+COPY src/backend/base/pyproject.toml src/backend/base/poetry.lock ./
+
+# Copy the rest of the application code
 COPY ./ ./
 
 # Install dependencies
