@@ -5,7 +5,7 @@ networks:
 services:
   backend:
     build:
-      context: ./
+      context: ./docker
       dockerfile: ./dev.Dockerfile
     env_file:
       - .env
